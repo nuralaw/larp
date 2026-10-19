@@ -1,0 +1,5 @@
+Processed using the built-in image_gen tool with transparent_background=true.
+Output files: sticker-1.png, sticker-2.png, sticker-3.png, sticker-4.png.
+Each source couple-new-N.jpg was processed separately with this prompt:
+
+Use case: background-extraction. Edit target: the supplied image. Remove only the white background and surrounding white empty margins. Keep the exact original subject, colors, texture, details and shape unchanged. Output one isolated sticker tightly framed with a small transparent margin on a genuinely transparent background. No new background, no outline, no shadow, no added objects. Save the resulting PNG for use as a website sticker.

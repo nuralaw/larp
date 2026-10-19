@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Little love notes</title>
+<link rel="stylesheet" href="main.css">
+<script src="main.js" defer></script>
+<script src="photo-list.js" defer></script>
+<script src="letter.js" defer></script>
+<script src="local-player.js" defer></script>
+</head>
+<body>
+<svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><filter id="paper-cutout" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%"><feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  -.2126 -.7152 -.0722 0 1"/><feComponentTransfer><feFuncA type="linear" slope="12" intercept="0"/></feComponentTransfer><feComposite in="SourceGraphic" operator="in"/></filter></defs></svg>
+<div class="hearts left" aria-hidden="true"></div><div class="hearts right" aria-hidden="true"></div>
+<main>
+<section class="note" aria-label="Note">
+<div class="letter-intro">
+  <div class="content-collage" aria-hidden="true" hidden>
+    <img class="collage-piece collage-heart-two" src="assets/content-decor/decoration-2.jpg" alt="">
+    <img class="collage-piece collage-couple" src="assets/content-decor/decoration-3.jpg" alt="">
+    <img class="collage-piece collage-receipt" src="assets/content-decor/decoration-4.jpg" alt="">
+  </div>
+  <div class="photo-ribbon ribbon-top" aria-label="Наши фотографии" hidden><div class="photo-track"></div></div>
+  <div class="closed-envelope" role="button" tabindex="0" aria-expanded="false" aria-controls="love-letter" aria-label="Открыть письмо">
+    <div class="envelope-fold"></div>
+    <div class="envelope-flap"></div>
+    <div class="wax-seal" aria-hidden="true">❦</div>
+    <div class="letter-recipient">
+    <span class="recipient-label">кому</span>
+    <p>моей любимой<br><em>девушке</em></p>
+    <span class="recipient-heart" aria-hidden="true">♡</span>
+    </div>
+  </div>
+  <article id="love-letter" class="love-letter" aria-label="Письмо" tabindex="-1" hidden>
+    <img class="collage-piece collage-heart-one letter-edge" src="assets/content-decor/decoration-1.jpg" alt="" aria-hidden="true">
+    <img class="collage-piece collage-love letter-edge" src="assets/content-decor/decoration-5.jpg" alt="" aria-hidden="true">
+    <img class="collage-piece collage-roses letter-edge" src="assets/content-decor/decoration-6.jpg" alt="" aria-hidden="true">
+    <img class="collage-piece collage-te-amo letter-edge" src="assets/content-decor/decoration-7.jpg" alt="" aria-hidden="true">
+    <span class="letter-ornament" aria-hidden="true">♡</span>
+    <p>пока я его не придумал</p>
+    <span class="letter-sign" aria-hidden="true">с любовью</span>
+    <button class="close-letter" type="button" aria-label="Закрыть письмо">×</button>
+  </article>
+  <p class="open-hint">нажми на печать — это для тебя</p>
+  <div class="photo-ribbon ribbon-bottom" aria-label="Наши фотографии" hidden><div class="photo-track"></div></div>
+</div>
+<template id="sticker-heart-template">
+<svg class="paper-sticker sticker-heart" viewBox="0 0 160 150" aria-hidden="true" focusable="false">
+  <path fill="#fff5ee" stroke="#d6c6c0" stroke-width="1" d="M10 36 34 10 64 17 80 30 100 13 126 10 151 37 154 67 136 103 87 141 57 133 17 99 5 65Z"/>
+  <path fill="#9c3e66" d="m20 44 22-21 24 5 18 23 20-24 23-2 20 22-2 28-21 30-38 27-27-9-31-30-12-26Z"/>
+  <path fill="#dd7eaa" d="m18 41 22-21 24 5 18 23 20-24 23-2 20 22-2 28-21 30-38 27-27-9-31-30-12-26Z"/>
+</svg>
+</template>
+<template id="sticker-star-template">
+<svg class="paper-sticker sticker-star" viewBox="0 0 130 140" aria-hidden="true" focusable="false">
+  <path fill="#bb4e81" d="m48 5 22 39 48-10-29 36 25 40-45-6-26 33-5-47L5 73l37-22Z"/>
+  <path fill="none" stroke="#f2a4cb" stroke-width="5" stroke-linejoin="round" d="m52 28 15 30 29-6-20 21 17 22-29-5-15 22-2-31-23-9 29-12Z"/>
+</svg>
+</template>
+</section>
+<section class="music-island" aria-labelledby="music-title">
+  <button class="music-heading drag-handle" type="button" aria-label="Move player. Arrow keys switch corners."><span id="music-title" class="sr-only">Music player</span><span aria-hidden="true">⠿</span></button>
+  <div class="turntable">
+    <div class="vinyl" aria-hidden="true"></div>
+    <div class="record-label"><img id="track-cover" alt="" hidden><div class="cover-fallback" aria-hidden="true">&#9825;</div><div class="record-caption"><strong id="track-title">we fell in love in october</strong><span id="track-artist">girl in red</span></div><span class="record-dot" aria-hidden="true"></span></div>
+    <div class="tonearm" aria-hidden="true"></div>
+  </div>
+  <div class="record-controls">
+    <button id="previous-track" type="button" aria-label="Previous song">⏮</button>
+    <button id="toggle-play" type="button" aria-label="Play">▶</button>
+    <button id="next-track" type="button" aria-label="Next song">⏭</button>
+  </div>
+  <p class="music-status sr-only" id="music-status" role="status">Connecting to the music…</p>
+  <label class="song-picker-label sr-only" for="song-picker">CHOOSE A LITTLE FEELING</label>
+  <select id="song-picker" aria-label="Choose song"></select>
+  <audio id="song-audio" preload="metadata"></audio>
+</section>
+</main>
+</body>
+</html>
+
