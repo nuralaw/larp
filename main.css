@@ -102,7 +102,9 @@ footer{display:flex;justify-content:space-between;padding:0 5% 25px;gap:20px;fon
 main{margin-top:100px}
 .note .content{padding-top:40px;padding-bottom:45px}
 .note h1{margin-top:22px;margin-bottom:36px}
-.music-heading{justify-content:flex-end;padding-bottom:0}
+.music-heading{justify-content:space-between;padding-bottom:0}
+.music-heading>.music-dedication{font:400 22px/1.2 'Marck Script',cursive;text-align:left}
+.music-dedication>span{display:inline-block;color:#efa9c8}
 @media(max-width:650px){main{margin-top:65px}.note .content{padding:25px 20px 35px}}
 
 /* Keep the note area at a fixed size. */
@@ -188,13 +190,28 @@ h1 em{color:#d27097}
 .content-collage{position:relative;grid-area:1/1;width:min(480px,88%);height:300px;z-index:0;pointer-events:none;animation:collage-reveal 1.4s ease both}
 .collage-piece{position:absolute;object-fit:contain;filter:url(#paper-cutout);opacity:1;border:0;box-shadow:none;background:transparent}
 .letter-edge{pointer-events:none;z-index:1}
+.letter-open .letter-edge{animation:letter-decoration-sway 6s ease-in-out 1.6s infinite,letter-decoration-pulse 2s ease-in-out 1.6s infinite;transform-origin:center}
+.letter-open .letter-edge:nth-of-type(3n){animation-duration:7.5s,2s;animation-delay:2s,1.6s;animation-direction:reverse,normal}
+.letter-open .letter-edge:nth-of-type(3n + 1){animation-duration:8.5s,2s;animation-delay:1.8s,1.6s}
+@keyframes letter-decoration-pulse{
+  0%,100%{scale:1}
+  50%{scale:1.04}
+}
+@keyframes letter-decoration-sway{
+  0%,100%{translate:0 0;rotate:-1deg}
+  50%{translate:0 -4px;rotate:1deg}
+}
+.letter-flower-top{width:115px;left:-55px;top:-45px;transform:rotate(-24deg)}
+.letter-flower-bottom{width:115px;right:-55px;bottom:-50px;transform:rotate(156deg)}
+.letter-mine{width:100px;right:-35px;top:-35px;transform:rotate(12deg)}
+.letter-stamp{width:70px;right:30px;top:35px;transform:rotate(13deg)}
 .collage-roses{width:100px;height:180px;right:-34px;top:85px;transform:rotate(12deg)}
 .collage-te-amo{width:150px;left:25%;bottom:-28px;transform:rotate(-7deg)}
-.collage-heart-one{width:105px;left:-25px;top:-27px;transform:rotate(-18deg)}
-.collage-heart-two{width:130px;right:-123px;bottom:15px;transform:rotate(17deg)}
-.collage-couple{width:155px;left:-150px;bottom:0;transform:rotate(-12deg)}
-.collage-receipt{width:130px;right:-125px;top:-18px;transform:rotate(16deg)}
-.collage-love{width:44px;height:210px;object-fit:cover;object-position:left;left:-17px;top:85px;transform:rotate(-8deg)}
+.collage-heart-one{width:105px;left:-65px;top:22%;transform:rotate(-18deg)}
+.collage-heart-two{width:130px;right:-65px;bottom:22%;transform:rotate(17deg)}
+.collage-couple{width:110px;left:-60px;top:43%;transform:rotate(-12deg)}
+.collage-receipt{width:100px;right:-55px;top:36%;transform:rotate(16deg)}
+.collage-love{width:44px;height:210px;object-fit:cover;object-position:left;left:-17px;bottom:35px;transform:rotate(-8deg)}
 @keyframes collage-reveal{from{opacity:0;transform:translateY(18px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
 body{overflow-x:hidden}
 .letter-intro{position:relative;min-height:560px;display:grid;grid-template-columns:1fr;place-items:center;gap:0;perspective:1200px}
@@ -214,7 +231,7 @@ body{overflow-x:hidden}
 .letter-open main{width:min(960px,90%)}
 .letter-open .note{margin-block:80px}
 .letter-open .letter-intro{padding:175px 0;min-height:700px}
-.letter-open .closed-envelope{transform:translateY(75px) rotate(0) scale(.94);opacity:.35;cursor:default;pointer-events:none}
+.letter-open .closed-envelope{animation:envelope-fall 1.6s cubic-bezier(.4,0,.8,.5) both;cursor:default;pointer-events:none}
 .letter-open .envelope-flap{transform:rotateX(175deg);opacity:0}
 .letter-open .wax-seal,.letter-open .letter-recipient,.letter-open .open-hint{opacity:0;pointer-events:none}
 .photo-ribbon{position:absolute;z-index:4;left:0;right:0;height:140px;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);border-block:1px solid #bf80982b;background:#3d1b2a40;animation:ribbon-appear 1.2s ease both}
@@ -236,7 +253,18 @@ body{overflow-x:hidden}
 .memory-placeholder{position:absolute;inset:5px 5px 15px;display:grid;place-items:center;background:linear-gradient(135deg,#caa6ae,#9b6b7f);color:#f6dce5;font:34px Georgia,serif}
 .photo-ribbon:hover .photo-track,.photo-ribbon:focus-within .photo-track{animation-play-state:paused}
 [hidden]{display:none!important}
-@keyframes letter-unfold{0%{opacity:0;transform:translateY(85px) scale(.7) rotate(-5deg)}35%{opacity:0}100%{opacity:1;transform:translateY(0) scale(1) rotate(0)}}
+@keyframes envelope-fall{
+  0%{opacity:1;transform:translateY(0) rotate(-7deg);z-index:5}
+  35%{opacity:1;transform:translateY(0) rotate(0);z-index:5}
+  65%{opacity:1;transform:translateY(180px) rotate(0);z-index:5}
+  100%{opacity:0;transform:translateY(650px) rotate(0);visibility:hidden;z-index:5}
+}
+@keyframes letter-unfold{
+  0%,25%{opacity:0;transform:translateY(180px) scale(.75)}
+  45%{opacity:1;transform:translateY(100px) scale(.85)}
+  80%{opacity:1;transform:translateY(-18px) scale(1)}
+  100%{opacity:1;transform:translateY(0) scale(1)}
+}
 @keyframes ribbon-appear{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
 @keyframes memory-drift{to{transform:translateX(-50%)}}
 @media(max-width:650px){
@@ -244,11 +272,15 @@ body{overflow-x:hidden}
   .letter-open main{width:88%;min-height:100svh;display:block}
   .letter-open .letter-intro{padding:140px 0;min-height:620px}
   .content-collage{width:78%;height:280px}
-  .collage-heart-one{width:75px;left:-17px;top:-23px}
-  .collage-heart-two{width:70px;right:-60px;bottom:10px}
-  .collage-couple{width:80px;left:-65px;bottom:5px}
-  .collage-receipt{width:75px;right:-60px;top:0}
-  .collage-love{width:32px;height:165px;left:-15px;top:85px}
+  .collage-heart-one{width:65px;left:-38px}
+  .letter-flower-top{width:65px;left:-30px;top:-32px}
+  .letter-flower-bottom{width:65px;right:-30px;bottom:-32px}
+  .letter-mine{width:50px;right:-18px;top:-25px}
+  .letter-stamp{width:45px;right:25px;top:45px}
+  .collage-heart-two{width:70px;right:-38px;bottom:22%}
+  .collage-couple{width:70px;left:-40px}
+  .collage-receipt{width:65px;right:-38px;top:36%}
+  .collage-love{width:32px;height:165px;left:-15px;bottom:35px}
   .collage-roses{width:75px;height:145px;right:-26px;top:110px}
   .collage-te-amo{width:115px;left:25%;bottom:-23px}
   .love-letter{width:78%;min-height:280px;padding:36px 26px}
@@ -261,4 +293,4 @@ body{overflow-x:hidden}
   .letter-open .music-island{position:relative;left:auto!important;top:auto!important;margin:18px auto 30px}
   body.letter-open{padding-bottom:0}
 }
-@media(prefers-reduced-motion:reduce){.closed-envelope,.envelope-flap,.wax-seal,.letter-recipient,.open-hint{transition:none}.love-letter,.photo-ribbon,.photo-track,.content-collage{animation:none}}
+@media(prefers-reduced-motion:reduce){.closed-envelope,.envelope-flap,.wax-seal,.letter-recipient,.open-hint{transition:none}.love-letter,.photo-ribbon,.photo-track,.content-collage,.letter-open .closed-envelope,.letter-open .letter-edge{animation:none}.letter-open .closed-envelope{visibility:hidden}}
